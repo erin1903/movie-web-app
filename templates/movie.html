@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container text-white my-5">
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <div class="mb-4">
+                <img class="img-fluid poster" src="{{movie_info.poster}}" alt="">
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h2>{{movie_info.title}}</h2>
+                </div>
+                <div class="mb-4 text-muted">
+                    <span><i class="bi bi-person-heart"></i> {{movie_info.vote_average}} </span>
+                    <span><i class="bi bi-stopwatch ml-2"></i> {{movie_info.time}} min </span>
+                    <span><i class="bi bi-calendar-event ml-2"></i> {{movie_info.release_date}} </span>
+                    <span><i class="bi bi-film ml-2"></i> {{movie_info.genre}} </span>
+                </div>
+                <div>
+                    <p>{{movie_info.overview}}</p>
+                </div>
+                <div class="mb-4">
+                    <div>
+                        <h5 class="title">Director</h5>
+                        <p class="name">{{movie_info.director}}</p>
+                    </div>
+                    <div>
+                        <h5 class="title">Cast</h5>
+                        <p> {{movie_info.actors}} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row text-white">
+        <div class="col border-bottom border-danger">
+            <h4>You might also like: </h4>
+        </div>
+    </div>
+    <div class="row my-5">
+        {% for key, value in movie_info.movie_cards.items() %}
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="card mb-5 card-hover-shadow" style="border-radius: 20px;" id="{{key}}" title="{{value[1]}}"
+                 onclick="clickCard(this)">
+                <div class="bg-image img-hover-zoom" style="border-radius: 20px;">
+                    <img class="card-img-top" style="border-radius: 20px;" src="{{value[0]}}" alt="">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{value[1]}}</h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
